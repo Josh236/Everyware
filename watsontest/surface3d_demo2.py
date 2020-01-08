@@ -1,7 +1,7 @@
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import numpy as np
-from test import tone_analysis
+from extendedtext import tones_data
 
 
 
@@ -19,7 +19,9 @@ z = 10 * np.outer(np.ones(np.size(u)), np.cos(v))
 # Plot the surface
 ax.plot_surface(x, y, z, color='r')
 
-#plt.title(tone_name)
+print(tones_data.tone_name)
+
+#plt.title(tones_data)
 plt.show()
 plt.axis('off')
 
