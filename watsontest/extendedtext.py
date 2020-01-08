@@ -22,7 +22,9 @@ tone_analysis = tone_analyzer.tone(
     content_type='application/json'
 ).get_result()
 
-print (tone_analysis['document_tone']['tones'][0]['tone_name'])
+for i in range(2):
+    print (tone_analysis['document_tone']['tones'][i]['tone_name'])
+    
 
 #mydata = json_normalize(tone_analysis['document_tone'])
 #mydata.head(3)
