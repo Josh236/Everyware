@@ -15,7 +15,7 @@ text = 'Team, I know that times are tough! Product '\
     'quarters. We have a competitive product, but we '\
     'need to do a better job of selling it!'
 
-tone_analysis = tone_analyzer.tone.document_tone(
+tone_analysis = tone_analyzer.tone(
     {'text': text},
     content_type='application/json'
 ).get_result()
