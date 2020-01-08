@@ -1,11 +1,3 @@
-'''
-========================
-3D surface (solid color)
-========================
-
-Demonstrates a very basic plot of a 3D surface using a solid color.
-'''
-
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import numpy as np
@@ -27,7 +19,7 @@ z = 10 * np.outer(np.ones(np.size(u)), np.cos(v))
 # Plot the surface
 ax.plot_surface(x, y, z, color='r')
 
-plt.title(tone_name)
+#plt.title(tone_name)
 plt.show()
 plt.axis('off')
 

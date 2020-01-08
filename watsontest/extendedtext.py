@@ -1,6 +1,7 @@
 import json
 from ibm_watson import ToneAnalyzerV3
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+from pandas.io.json import json_normalize
 
 authenticator = IAMAuthenticator('4VAC4EecGDVM_t3BvRFvdd-dmwDIdpkbnWffTrhoQKZI')
 tone_analyzer = ToneAnalyzerV3(
@@ -15,14 +16,16 @@ text = 'Team, I know that times are tough! Product '\
     'quarters. We have a competitive product, but we '\
     'need to do a better job of selling it!'
 
-tone_analysis = tone_analyzer.tone.document_tone(
+tone_analysis = tone_analyzer.tone(
     {'text': text},
     content_type='application/json'
 ).get_result()
 
-#for item in tone_analysis:
- #   if "tones" in item:
-  #      print item.get("tones").get("tone_name")
+mydata = json_normalize(tone_analysis['document_tone'])
+mydata.head(3)
+print(mydata)
 
-extract_element_from_json(tone_analysis, ["document_tone"]["tones"][0]["tone_name"])
-print(json.dumps(tone_analysis, array, indent=2))
+tones_data = json_normalize(data=tone_analysis['document_tone'], record_path='tones')
+tones_data.head(3)
+print(tones_data)
+
