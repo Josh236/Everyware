@@ -1,4 +1,5 @@
 import json
+#from quotes.json import text
 from ibm_watson import ToneAnalyzerV3
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 from pandas.io.json import json_normalize
@@ -15,12 +16,12 @@ tone_analyzer = ToneAnalyzerV3(
     authenticator=authenticator
 )
 
+with open('quotes.json') as json_file:
+    jsonData = json.load(json_file)
+
 tone_analyzer.set_service_url('https://api.eu-gb.tone-analyzer.watson.cloud.ibm.com')
 
-text = 'Team, I know that times are tough! Product '\
-       'sales have been disappointing for the past three '\
-        'quarters. We have a competitive product, but we '\
-        'need to do a better job of selling it!'
+text = quotes.json['text']
 
 tone_analysis = tone_analyzer.tone(
     {'text': text},
