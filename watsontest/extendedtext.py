@@ -7,8 +7,11 @@ from pandas.io.json import json_normalize
 from random import seed
 from random import randint
 from random import shuffle
+import random
 
-seed(1)
+random.seed()
+
+jsonRData = 'blah'
 
 authenticator = IAMAuthenticator('4VAC4EecGDVM_t3BvRFvdd-dmwDIdpkbnWffTrhoQKZI')
 tone_analyzer = ToneAnalyzerV3(
@@ -17,22 +20,31 @@ tone_analyzer = ToneAnalyzerV3(
 )
 
 with open('quotes.json') as json_file:
-    jsonData = json.load(json_file)
+    jsonData = json_file.read()
+
+obj = json.loads(jsonData)
+for i in range(1):
+    jsonVal = random.randint(1,11)
+    print(jsonVal)
+    jsonRData = (obj[jsonVal]['text'])
+    print(jsonRData)
+
+
 
 tone_analyzer.set_service_url('https://api.eu-gb.tone-analyzer.watson.cloud.ibm.com')
 
-text = quotes.json['text']
+text = jsonRData
 
 tone_analysis = tone_analyzer.tone(
     {'text': text},
     content_type='application/json'
 ).get_result()
 
-for j in range(1):
-    value = randint(0, 2)
-    print(value)
-    myData = tone_analysis['document_tone']['tones'][j]['tone_name']    
-    print (myData)
+#for j in range(1):
+value = randint(0, 1)
+print(value)
+myData = tone_analysis['document_tone']['tones'][0]['tone_name']
+print (myData)
     
 
 #mydata = json_normalize(tone_analysis['document_tone'])
